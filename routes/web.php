@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,17 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/test_auto_json', function () {
+    return ['Welcome bro !' => 'my nigga !'];
+});
+
+Route::get('/test', function () {
+    return view('test', [
+        'name' => request('name')
+    ]);
+});
+
+Route::get('/posts/{post}', [PostsController::class, 'show']);
+
+
