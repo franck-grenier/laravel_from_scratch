@@ -1,20 +1,5 @@
 @extends('spatial/spatial_layout')
 
-@section('header')
-    <!-- Header -->
-    <header id="header" class="">
-        <h1><strong><a href="index.blade.php">Spatial</a></strong> by Templated</h1>
-        <nav id="nav">
-            <ul>
-                <li><a href="{{ route('spatial/index') }}">Home</a></li>
-                <li><a href="{{ route('spatial/generic') }}">Generic</a></li>
-                <li><a href="{{ route('spatial/elements') }}">Elements</a></li>
-            </ul>
-        </nav>
-    </header>
-    <a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
-@endsection
-
 @section('content')
     <!-- Main -->
     <section id="main" class="wrapper">
@@ -32,20 +17,4 @@
 
         </div>
     </section>
-
-    <!-- Footer -->
-    <footer id="footer">
-        <div class="container">
-            <ul class="icons">
-                <li><a href="#" class="icon fa-facebook"></a></li>
-                <li><a href="#" class="icon fa-twitter"></a></li>
-                <li><a href="#" class="icon fa-instagram"></a></li>
-            </ul>
-            <ul class="copyright">
-                <li>&copy; Untitled</li>
-                <li>Design: <a href="http://templated.co">TEMPLATED</a></li>
-                <li>Images: <a href="http://unsplash.com">Unsplash</a></li>
-            </ul>
-        </div>
-    </footer>
 @endsection

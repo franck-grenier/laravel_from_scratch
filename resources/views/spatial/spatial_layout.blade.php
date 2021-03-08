@@ -13,9 +13,10 @@
 </head>
 <body class="{{ Request()->is('spatial') ? 'landing' : '' }}">
 
-@yield('header')
+@include('spatial/header')
 @yield('content')
-@yield('footer')
+@include('spatial/footer')
+@
 
 <!-- Scripts -->
 <script src="/assets/js/jquery.min.js"></script>
