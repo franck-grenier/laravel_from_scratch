@@ -31,3 +31,14 @@ Route::get('/test', function () {
 Route::get('/posts/{post}', [PostsController::class, 'show']);
 
 
+Route::name('spatial/index')->get('/spatial', function () {
+    return view('spatial/index');
+});
+
+Route::name('spatial/generic')->get('/spatial/generic', function () {
+    return view('spatial/generic');
+});
+
+Route::name('spatial/elements')->get('/spatial/elements', function () {
+    return view('spatial/elements');
+});
