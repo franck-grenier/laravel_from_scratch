@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostsController;
+use App\Http\Controllers\ArticlesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,31 +15,34 @@ use App\Http\Controllers\PostsController;
 |
 */
 
-Route::get('/', function () {
+Route::get('/old/', function () {
     return view('welcome');
 });
 
-Route::get('/test_auto_json', function () {
+Route::get('/old/test_auto_json', function () {
     return ['Welcome bro !' => 'my nigga !'];
 });
 
-Route::get('/test', function () {
+Route::get('/old/test', function () {
     return view('test', [
         'name' => request('name')
     ]);
 });
 
-Route::get('/posts/{post}', [PostsController::class, 'show']);
+// Routes to Spatial templated test site
 
-
-Route::name('spatial/index')->get('/spatial', function () {
+Route::name('index')->get('/', function () {
     return view('spatial/index');
 });
 
-Route::name('spatial/generic')->get('/spatial/generic', function () {
+Route::name('generic')->get('/generic', function () {
     return view('spatial/generic');
 });
 
-Route::name('spatial/elements')->get('/spatial/elements', function () {
+Route::name('elements')->get('/elements', function () {
     return view('spatial/elements');
 });
+
+Route::name('articles')->get('/articles', [ArticlesController::class, 'showAll']);
+
+Route::name('article')->get('/articles/{article}', [ArticlesController::class, 'showOne']);

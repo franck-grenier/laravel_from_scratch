@@ -3,9 +3,10 @@
     <h1><strong><a href="index.blade.php">Spatial</a></strong> by Templated</h1>
     <nav id="nav">
         <ul>
-            <li><a href="{{ route('spatial/index') }}">Home</a></li>
-            <li><a href="{{ route('spatial/generic') }}">Generic</a></li>
-            <li><a href="{{ route('spatial/elements') }}">Elements</a></li>
+            <li><a href="{{ route('index') }}">Home</a></li>
+            <li><a href="{{ route('articles') }}">Articles</a></li>
+            <li><a href="{{ route('generic') }}">Generic</a></li>
+            <li><a href="{{ route('elements') }}">Elements</a></li>
         </ul>
     </nav>
 </header>
