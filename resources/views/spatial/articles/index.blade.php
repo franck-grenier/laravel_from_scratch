@@ -17,10 +17,11 @@
                             <h4>{{ $article->title }}</h4>
                         </header>
                         <p>{{ $article->excerpt }}</p>
-                        <span><a href="{{ route('article' , ['article' => $article->id]) }}">Read more</a></span>
+                        <span><a href="{{ route('articles_show' , ['article' => $article->id]) }}">Read more</a></span>
                     </div>
                 </div>
                 @endforeach
+                {{ $articles->links() }}
             </div>
         </div>
     </section>

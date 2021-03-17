@@ -43,6 +43,7 @@ Route::name('elements')->get('/elements', function () {
     return view('spatial/elements');
 });
 
-Route::name('articles')->get('/articles', [ArticlesController::class, 'showAll']);
-
-Route::name('article')->get('/articles/{article}', [ArticlesController::class, 'showOne']);
+Route::name('articles_index')->get('/articles', [ArticlesController::class, 'index']);
+Route::name('articles_post')->post('articles', [ArticlesController::class, 'store']);
+Route::name('articles_create')->get('/articles/create', [ArticlesController::class, 'create']);
+Route::name('articles_show')->get('/articles/{article}', [ArticlesController::class, 'show']);

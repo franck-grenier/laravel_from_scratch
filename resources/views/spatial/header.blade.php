@@ -4,7 +4,7 @@
     <nav id="nav">
         <ul>
             <li><a href="{{ route('index') }}">Home</a></li>
-            <li><a href="{{ route('articles') }}">Articles</a></li>
+            <li><a href="{{ route('articles_index') }}">Articles</a></li>
             <li><a href="{{ route('generic') }}">Generic</a></li>
             <li><a href="{{ route('elements') }}">Elements</a></li>
         </ul>
