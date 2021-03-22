@@ -78,7 +78,8 @@ class ArticlesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $article = Article::find($id);
+        return view('spatial/articles/edit' , ['article' => $article]);
     }
 
     /**
@@ -90,7 +91,15 @@ class ArticlesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $article = Article::find($id);
+
+        $article->title = $request->post('title');
+        $article->excerpt = $request->post('excerpt');
+        $article->body = $request->post('body');
+
+        $article->save();
+
+        return redirect(route('articles_show' , $article->id));
     }
 
     /**

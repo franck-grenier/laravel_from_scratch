@@ -45,5 +45,7 @@ Route::name('elements')->get('/elements', function () {
 
 Route::name('articles_index')->get('/articles', [ArticlesController::class, 'index']);
 Route::name('articles_post')->post('articles', [ArticlesController::class, 'store']);
+Route::name('articles_put')->put('/articles/{article}', [ArticlesController::class, 'update']);
 Route::name('articles_create')->get('/articles/create', [ArticlesController::class, 'create']);
 Route::name('articles_show')->get('/articles/{article}', [ArticlesController::class, 'show']);
+Route::name('articles_edit')->get('/articles/{article}/edit', [ArticlesController::class, 'edit']);
