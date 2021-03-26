@@ -48,6 +48,8 @@ class ArticlesController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate(Article::validation);
+
         $article = new Article();
 
         $article->title = $request->post('title');
@@ -91,6 +93,8 @@ class ArticlesController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate(Article::validation);
+
         $article = Article::find($id);
 
         $article->title = $request->post('title');

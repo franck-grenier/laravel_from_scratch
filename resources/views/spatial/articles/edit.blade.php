@@ -15,12 +15,15 @@
                     <div class="row uniform 100%">
                         <div class="12u$">
                             <input type="text" name="title" id="title" value="{{  $article->title }}" placeholder="Title" />
+                            @error('title'){{ $errors->first('title') }}@enderror
                         </div>
                         <div class="12u$">
                             <input type="text" name="excerpt" id="excerpt" value="{{  $article->excerpt }}" placeholder="Excerpt" />
+                            @error('excerpt'){{ $errors->first('excerpt') }}@enderror
                         </div>
                         <div class="12u$">
                             <textarea name="body" id="body" placeholder="Body" rows="6">{{  $article->body }}</textarea>
+                            @error('body'){{ $errors->first('body') }}@enderror
                         </div>
                         <div class="12u$">
                             <ul class="actions">

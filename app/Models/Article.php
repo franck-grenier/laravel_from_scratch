@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Article extends Model
 {
     use HasFactory;
+
+    const validation = [
+        'title'     => 'required',
+        'excerpt'   => 'required',
+        'body'      => 'required'
+    ];
 }
