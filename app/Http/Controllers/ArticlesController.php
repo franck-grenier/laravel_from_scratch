@@ -8,18 +8,6 @@ use Illuminate\Http\Response;
 
 class ArticlesController extends Controller
 {
-    public function showAll () {
-        return view('spatial/articles/index', [
-            'articles' => Article::latest()->simplePaginate(4)
-        ]);
-    }
-
-    public function showOne ($article) {
-        return view('spatial/articles/show', [
-            'article' => Article::where('id', $article)->firstOrFail()
-        ]);
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -27,7 +15,9 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        return $this->showAll();
+        return view('spatial/articles/index', [
+            'articles' => Article::latest()->simplePaginate(4)
+        ]);
     }
 
     /**
@@ -64,23 +54,22 @@ class ArticlesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Article $article)
     {
-        return $this->showOne($id);
+        return view('spatial/articles/show', ['article' => $article]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Article $article)
     {
-        $article = Article::find($id);
         return view('spatial/articles/edit' , ['article' => $article]);
     }
 
@@ -88,14 +77,12 @@ class ArticlesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Article $article)
     {
         $request->validate(Article::validation);
-
-        $article = Article::find($id);
 
         $article->title = $request->post('title');
         $article->excerpt = $request->post('excerpt');
@@ -109,10 +96,10 @@ class ArticlesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Article $article)
     {
         //
     }
