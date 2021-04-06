@@ -14,4 +14,6 @@ class Article extends Model
         'excerpt'   => 'required',
         'body'      => 'required'
     ];
+
+    protected $fillable = ['title', 'excerpt', 'body'];
 }

@@ -38,15 +38,7 @@ class ArticlesController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate(Article::validation);
-
-        $article = new Article();
-
-        $article->title = $request->post('title');
-        $article->excerpt = $request->post('excerpt');
-        $article->body = $request->post('body');
-
-        $article->save();
+        Article::create($request->validate(Article::validation));
 
         return redirect(route('articles_index'));
     }
@@ -82,13 +74,7 @@ class ArticlesController extends Controller
      */
     public function update(Request $request, Article $article)
     {
-        $request->validate(Article::validation);
-
-        $article->title = $request->post('title');
-        $article->excerpt = $request->post('excerpt');
-        $article->body = $request->post('body');
-
-        $article->save();
+        $article->update($request->validate(Article::validation));
 
         return redirect(route('articles_show' , $article->id));
     }
