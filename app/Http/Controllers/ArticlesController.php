@@ -33,7 +33,7 @@ class ArticlesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -46,7 +46,7 @@ class ArticlesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  Article  $article
+     * @param Article $article
      * @return \Illuminate\Http\Response
      */
     public function show(Article $article)
@@ -57,32 +57,32 @@ class ArticlesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  Article  $article
+     * @param Article $article
      * @return \Illuminate\Http\Response
      */
     public function edit(Article $article)
     {
-        return view('spatial/articles/edit' , ['article' => $article]);
+        return view('spatial/articles/edit', ['article' => $article]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  Article  $article
+     * @param \Illuminate\Http\Request $request
+     * @param Article $article
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Article $article)
     {
         $article->update($request->validate(Article::validation));
 
-        return redirect(route('articles_show' , $article->id));
+        return redirect(route('articles_show', $article->id));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Article  $article
+     * @param Article $article
      * @return \Illuminate\Http\Response
      */
     public function destroy(Article $article)

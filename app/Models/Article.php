@@ -10,10 +10,15 @@ class Article extends Model
     use HasFactory;
 
     const validation = [
-        'title'     => 'required',
-        'excerpt'   => 'required',
-        'body'      => 'required'
+        'title' => 'required',
+        'excerpt' => 'required',
+        'body' => 'required'
     ];
 
     protected $fillable = ['title', 'excerpt', 'body'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
