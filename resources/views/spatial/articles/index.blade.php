@@ -17,7 +17,7 @@
                             <h4>{{ $article->title }} <a href="{{ route('articles_edit' , $article->id) }}">✎</a></h4>
                         </header>
                         <p>{{ $article->excerpt }}</p>
-                        <span><a href="{{ route('articles_show' , ['article' => $article->id]) }}">Read more</a></span>
+                        <span><a href="{{ route('articles_show' , ['article' => $article->slug]) }}">Read more</a></span>
                     </div>
                 </div>
                 @endforeach

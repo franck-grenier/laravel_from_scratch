@@ -2,16 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreArticleRequest;
 use Illuminate\Http\Request;
 use App\Models\Article;
 use Illuminate\Http\Response;
+use Illuminate\Support\Str;
 
+/**
+ * Class ArticlesController
+ * @package App\Http\Controllers
+ */
 class ArticlesController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\View
      */
     public function index()
     {
@@ -23,7 +29,7 @@ class ArticlesController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\View
      */
     public function create()
     {
@@ -31,12 +37,10 @@ class ArticlesController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function store(Request $request)
+    public function store(StoreArticleRequest $request)
     {
         Article::create($request->validate(Article::validation));
 
@@ -47,7 +51,7 @@ class ArticlesController extends Controller
      * Display the specified resource.
      *
      * @param Article $article
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\View
      */
     public function show(Article $article)
     {
@@ -58,7 +62,7 @@ class ArticlesController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param Article $article
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\View
      */
     public function edit(Article $article)
     {
@@ -66,17 +70,15 @@ class ArticlesController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
      * @param Article $article
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update(Request $request, Article $article)
+    public function update(StoreArticleRequest $request, Article $article)
     {
         $article->update($request->validate(Article::validation));
 
-        return redirect(route('articles_show', $article->id));
+        return redirect(route('articles_show', $article->slug));
     }
 
     /**
