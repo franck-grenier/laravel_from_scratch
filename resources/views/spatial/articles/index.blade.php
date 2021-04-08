@@ -21,7 +21,7 @@
                     </div>
                 </div>
                 @endforeach
-                {{ $articles->links() }}
+                {{ $articles->appends(request()->except('page'))->links() }}
             </div>
         </div>
     </section>

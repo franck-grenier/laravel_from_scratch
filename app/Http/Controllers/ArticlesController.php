@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreArticleRequest;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use App\Models\Article;
 use Illuminate\Http\Response;
@@ -19,10 +20,16 @@ class ArticlesController extends Controller
      *
      * @return \Illuminate\Contracts\View\View
      */
-    public function index()
+    public function index(Request $request)
     {
+        if ($request->get('tag')) {
+            $articles = Tag::where('name', $request->get('tag'))->firstOrFail()->articles();
+        } else {
+            $articles = Article::latest();
+        }
+
         return view('spatial/articles/index', [
-            'articles' => Article::latest()->simplePaginate(4)
+            'articles' => $articles->simplePaginate(4)
         ]);
     }
 
