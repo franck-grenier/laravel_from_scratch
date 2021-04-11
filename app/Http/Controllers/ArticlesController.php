@@ -29,7 +29,7 @@ class ArticlesController extends Controller
         }
 
         return view('spatial/articles/index', [
-            'articles' => $articles->simplePaginate(4)
+            'articles' => $articles->simplePaginate(8)
         ]);
     }
 
