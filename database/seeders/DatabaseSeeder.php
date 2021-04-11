@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
         Article::factory(10)->create();
 
         $tags = Tag::all();
-        Article::all()->each(function ($article) use ($tags) {
+        Article::all()->each(function (Article $article) use ($tags) {
             $article->tags()->attach(
                 $tags->random(rand(1, 3))->pluck('id')->toArray()
             );

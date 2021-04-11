@@ -49,7 +49,7 @@ class ArticlesController extends Controller
      */
     public function store(StoreArticleRequest $request)
     {
-        Article::create($request->validate(Article::validation));
+        Article::create($request->validate(Article::VALIDATION));
 
         return redirect(route('articles_index'));
     }
@@ -83,7 +83,7 @@ class ArticlesController extends Controller
      */
     public function update(StoreArticleRequest $request, Article $article)
     {
-        $article->update($request->validate(Article::validation));
+        $article->update($request->validate(Article::VALIDATION));
 
         return redirect(route('articles_show', $article->slug));
     }

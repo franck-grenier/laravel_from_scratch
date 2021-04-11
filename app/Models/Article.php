@@ -10,7 +10,7 @@ class Article extends Model
 {
     use HasFactory;
 
-    const validation = [
+    const VALIDATION = [
         'title' => 'required|max:255',
         'slug' => 'required|unique:articles|max:255',
         'excerpt' => 'required',

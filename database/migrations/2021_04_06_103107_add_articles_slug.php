@@ -43,6 +43,6 @@ class AddArticlesSlug extends Migration
      */
     public function down()
     {
-        //Schema::dropColumns('articles', ['slug']);
+        Schema::dropColumns('articles', ['slug']);
     }
 }

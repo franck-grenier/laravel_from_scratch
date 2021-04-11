@@ -11,7 +11,7 @@
             </header>
             <section>
                 <p>
-                    <i>{{ $article->author->name }}</i>
+                    <i>by {{ $article->author->name }}</i>
                     <br>
                     @foreach($article->tags->pluck('name') as $tag)
                         <a href="{{ route('articles_index', ['tag' => $tag]) }}">{{ $tag }}</a>@if (!$loop->last), @endif

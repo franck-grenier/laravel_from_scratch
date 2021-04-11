@@ -25,7 +25,7 @@ class StoreArticleRequest extends FormRequest
      */
     public function rules()
     {
-        return Article::validation;
+        return Article::VALIDATION;
     }
 
     /**
