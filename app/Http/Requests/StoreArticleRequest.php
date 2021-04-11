@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use App\Models\Article;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class StoreArticleRequest extends FormRequest
 {
@@ -25,7 +26,13 @@ class StoreArticleRequest extends FormRequest
      */
     public function rules()
     {
-        return Article::VALIDATION;
+        $rules = Article::VALIDATION;
+        $rules['slug'] = [
+            'required',
+            'max:255',
+            Rule::unique('articles', 'slug')->ignore($this->segment(2)) // REST convention, ie. /articles/{id}
+        ];
+        return $rules;
     }
 
     /**

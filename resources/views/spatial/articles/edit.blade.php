@@ -34,6 +34,17 @@
                             @error('body'){{ $errors->first('body') }}@enderror
                         </div>
                         <div class="12u$">
+                            <label for="Tags">Tags</label>
+                            <select name="tags[]" id="tags" multiple style="height:300px; width:50%;">
+                                @foreach($tags as $tag)
+                                    <option value="{{ $tag->id }}" @if(in_array($tag->id, $article->tags->pluck('id')->toArray()))selected @endif>
+                                        {{ $tag->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('tags'){{ $errors->first('tags') }}@enderror
+                        </div>
+                        <div class="12u$">
                             <ul class="actions">
                                 <li><input type="submit" value="Update" class="special" /></li>
                             </ul>

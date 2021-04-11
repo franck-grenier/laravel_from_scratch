@@ -12,9 +12,10 @@ class Article extends Model
 
     const VALIDATION = [
         'title' => 'required|max:255',
-        'slug' => 'required|unique:articles|max:255',
+        'slug' => 'required|unique:articles,slug|max:255',
         'excerpt' => 'required',
-        'body' => 'required'
+        'body' => 'required',
+        'tags' => 'exists:tags,id'
     ];
 
     protected $fillable = ['title', 'excerpt', 'body', 'slug'];
@@ -30,7 +31,7 @@ class Article extends Model
      */
     public function tags()
     {
-        return $this->belongsToMany(Tag::class);
+        return $this->belongsToMany(Tag::class)->withTimestamps();
     }
 
 

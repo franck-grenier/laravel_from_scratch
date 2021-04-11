@@ -33,6 +33,15 @@
                             @error('body'){{ $errors->first('body') }}@enderror
                         </div>
                         <div class="12u$">
+                            <label for="Tags">Tags</label>
+                            <select name="tags[]" id="tags" multiple style="height:300px; width:50%;">
+                                @foreach($tags as $tag)
+                                    <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('body'){{ $message }}@enderror
+                        </div>
+                        <div class="12u$">
                             <ul class="actions">
                                 <li><input type="submit" value="Create" class="special" /></li>
                                 <li><input type="reset" value="Reset" /></li>

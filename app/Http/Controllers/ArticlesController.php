@@ -40,7 +40,7 @@ class ArticlesController extends Controller
      */
     public function create()
     {
-        return view('spatial/articles/create');
+        return view('spatial/articles/create', ['tags' => Tag::all()]);
     }
 
     /**
@@ -49,7 +49,12 @@ class ArticlesController extends Controller
      */
     public function store(StoreArticleRequest $request)
     {
-        Article::create($request->validate(Article::VALIDATION));
+        $article = new Article($request->validate($request->rules()));
+        $article->save();
+
+        if ($request->has('tags')) {
+            $article->tags()->attach($request->get('tags'));
+        }
 
         return redirect(route('articles_index'));
     }
@@ -73,7 +78,12 @@ class ArticlesController extends Controller
      */
     public function edit(Article $article)
     {
-        return view('spatial/articles/edit', ['article' => $article]);
+        return view('spatial/articles/edit',
+            [
+                'article' => $article,
+                'tags' => Tag::all()
+            ]
+        );
     }
 
     /**
@@ -83,7 +93,13 @@ class ArticlesController extends Controller
      */
     public function update(StoreArticleRequest $request, Article $article)
     {
-        $article->update($request->validate(Article::VALIDATION));
+
+        $article->update($request->validate($request->rules()));
+
+        if ($request->has('tags')) {
+            $article->tags()->detach();
+            $article->tags()->attach($request->get('tags'));
+        }
 
         return redirect(route('articles_show', $article->slug));
     }
