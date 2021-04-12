@@ -49,3 +49,7 @@ Route::name('articles_put')->put('/articles/{article:id}', [ArticlesController::
 Route::name('articles_create')->get('/articles/create', [ArticlesController::class, 'create']);
 Route::name('articles_show')->get('/articles/{article:slug}', [ArticlesController::class, 'show']);
 Route::name('articles_edit')->get('/articles/{article:id}/edit', [ArticlesController::class, 'edit']);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
