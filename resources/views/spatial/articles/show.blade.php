@@ -5,7 +5,7 @@
     <section id="main" class="wrapper">
         <div class="container">
             <header class="major special">
-                <h2>{{ $article->title }} <a href="{{ route('articles_edit' , $article->id) }}">✎</a></h2>
+                <h2>{{ $article->title }}@auth <a href="{{ route('articles_edit' , $article->id) }}">✎</a>@endauth</h2>
 
                 <p>{{ $article->excerpt }}</p>
             </header>

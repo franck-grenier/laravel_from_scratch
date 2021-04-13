@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('spatial/spatial_layout')
 
 @section('content')
 <div class="container">

@@ -44,11 +44,11 @@ Route::name('elements')->get('/elements', function () {
 });
 
 Route::name('articles_index')->get('/articles', [ArticlesController::class, 'index']);
-Route::name('articles_post')->post('articles', [ArticlesController::class, 'store']);
-Route::name('articles_put')->put('/articles/{article:id}', [ArticlesController::class, 'update']);
-Route::name('articles_create')->get('/articles/create', [ArticlesController::class, 'create']);
+Route::name('articles_post')->post('articles', [ArticlesController::class, 'store'])->middleware('auth');
+Route::name('articles_put')->put('/articles/{article:id}', [ArticlesController::class, 'update'])->middleware('auth');
+Route::name('articles_create')->get('/articles/create', [ArticlesController::class, 'create'])->middleware('auth');
 Route::name('articles_show')->get('/articles/{article:slug}', [ArticlesController::class, 'show']);
-Route::name('articles_edit')->get('/articles/{article:id}/edit', [ArticlesController::class, 'edit']);
+Route::name('articles_edit')->get('/articles/{article:id}/edit', [ArticlesController::class, 'edit'])->middleware('auth');
 
 Auth::routes();
 
