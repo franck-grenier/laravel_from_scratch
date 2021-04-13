@@ -51,5 +51,3 @@ Route::name('articles_show')->get('/articles/{article:slug}', [ArticlesControlle
 Route::name('articles_edit')->get('/articles/{article:id}/edit', [ArticlesController::class, 'edit'])->middleware('auth');
 
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
