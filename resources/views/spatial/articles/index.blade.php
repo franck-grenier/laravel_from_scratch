@@ -8,6 +8,16 @@
                 <h2>Articles</h2>@auth <a class="big" href="{{ route('articles_create') }}">+</a>@endauth
                 <p>news about us</p>
             </header>
+            <section>
+                <p>
+                @foreach($assigned_tags as $tag)
+                    <a class="button alt small @if($tag === $filtered_tag) special @endif"
+                       href="@if($tag === $filtered_tag){{ route('articles_index') }}@else{{ route('articles_index', ['tag' => $tag]) }}@endif">
+                        {{ $tag }}
+                    </a>
+                @endforeach
+                </p>
+            </section>
             <div class="feature-grid">
                 @forelse($articles as $article)
                 <div class="feature">

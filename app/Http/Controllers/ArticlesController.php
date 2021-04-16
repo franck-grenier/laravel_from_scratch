@@ -28,8 +28,12 @@ class ArticlesController extends Controller
             $articles = Article::latest();
         }
 
+        $assigned_tags = Article::all()->pluck('tags.*.name')->collapse()->unique();
+
         return view('spatial/articles/index', [
-            'articles' => $articles->simplePaginate(8)
+            'articles' => $articles->simplePaginate(8),
+            'assigned_tags' => $assigned_tags,
+            'filtered_tag' => $request->get('tag')
         ]);
     }
 
