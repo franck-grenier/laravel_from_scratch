@@ -30,4 +30,7 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'tags' => [
+        'key' => 'my-api-key-not-so-secret'
+    ],
 ];
