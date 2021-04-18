@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreArticleRequest;
 use App\Models\Tag;
+use App\Services\TagService;
 use Illuminate\Http\Request;
 use App\Models\Article;
 use Illuminate\Http\Response;
@@ -20,7 +21,7 @@ class ArticlesController extends Controller
      *
      * @return \Illuminate\Contracts\View\View
      */
-    public function index(Request $request)
+    public function index(Request $request, TagService $tagService)
     {
         if ($request->get('tag')) {
             $articles = Tag::where('name', $request->get('tag'))->firstOrFail()->articles();
@@ -28,11 +29,9 @@ class ArticlesController extends Controller
             $articles = Article::latest();
         }
 
-        $assigned_tags = Article::all()->pluck('tags.*.name')->collapse()->unique();
-
         return view('spatial/articles/index', [
             'articles' => $articles->simplePaginate(8),
-            'assigned_tags' => $assigned_tags,
+            'assigned_tags' => $tagService->getAssignedTags(),
             'filtered_tag' => $request->get('tag')
         ]);
     }
