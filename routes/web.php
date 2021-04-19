@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PostsController;
 use App\Http\Controllers\ArticlesController;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,3 +51,6 @@ Route::name('articles_show')->get('/articles/{article:slug}', [ArticlesControlle
 Route::name('articles_edit')->get('/articles/{article:id}/edit', [ArticlesController::class, 'edit'])->middleware('auth');
 
 Auth::routes();
+
+Route::name('contact')->get('/contact', [ContactController::class, 'show']);
+Route::name('contact')->post('/contact', [ContactController::class, 'store']);

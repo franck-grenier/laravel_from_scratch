@@ -7,6 +7,7 @@
             <li><a href="{{ route('articles_index') }}">Articles</a></li>
             <li><a href="{{ route('generic') }}">Generic</a></li>
             <li><a href="{{ route('elements') }}">Elements</a></li>
+            <li><a href="{{ route('contact') }}">Contact us</a></li>
             <li><small>
                 @auth
                     <span class="icon fa-user">&nbsp;{{ auth()->user()->name }}</span>
