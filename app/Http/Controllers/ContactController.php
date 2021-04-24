@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\sendEmails;
 use App\Mail\ContactUs;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
@@ -21,7 +21,7 @@ class ContactController extends Controller
             'message' => 'required'
         ]);
 
-        Mail::send(new ContactUs(...$params));
+        SendEmails::dispatch(new ContactUs(...$params));
 
         return redirect(route('contact'))->with('result', 'Message sent !');
     }

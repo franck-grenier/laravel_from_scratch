@@ -3,7 +3,6 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
@@ -12,6 +11,10 @@ class ContactUs extends Mailable
     use Queueable, SerializesModels;
 
     protected const SUBJECT = 'Thanks for your message !';
+
+    private string $message;
+    private string $email;
+    private string $name;
 
     /**
      * Create a new message instance.
