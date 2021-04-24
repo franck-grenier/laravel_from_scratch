@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ContactUs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -20,10 +21,7 @@ class ContactController extends Controller
             'message' => 'required'
         ]);
 
-        Mail::raw($params['message'], function ($message) use ($params) {
-            $message->to($params['email'])
-                    ->subject('Thanks for your message');
-        });
+        Mail::send(new ContactUs(...$params));
 
         return redirect(route('contact'))->with('result', 'Message sent !');
     }
