@@ -32,7 +32,10 @@ class ArticleCreated extends Notification implements ShouldQueue
      */
     public function via($notifiable)
     {
-        return ['mail', 'database'];
+        return [
+            'mail',
+            'database'
+        ];
     }
 
     /**
@@ -43,7 +46,8 @@ class ArticleCreated extends Notification implements ShouldQueue
     public function viaQueues()
     {
         return [
-            'mail' => 'sendEmails'
+            'mail' => 'sendEmails',
+            'database' => 'sendEmails'
         ];
     }
 
@@ -56,9 +60,9 @@ class ArticleCreated extends Notification implements ShouldQueue
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', route('articles_show' , ['article' => $this->article->slug]))
-                    ->line('Thank you for using our application!');
+                    ->line('A new article has just been created')
+                    ->action('View article', route('articles_show' , ['article' => $this->article->slug]))
+                    ->line('Enjoy reading !');
     }
 
     /**
@@ -71,4 +75,6 @@ class ArticleCreated extends Notification implements ShouldQueue
     {
         return $this->article->toArray();
     }
+
+
 }
