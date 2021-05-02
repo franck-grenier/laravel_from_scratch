@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\NotifController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,6 +50,7 @@ Route::name('articles_put')->put('/articles/{article:id}', [ArticlesController::
 Route::name('articles_create')->get('/articles/create', [ArticlesController::class, 'create'])->middleware('auth');
 Route::name('articles_show')->get('/articles/{article:slug}', [ArticlesController::class, 'show']);
 Route::name('articles_edit')->get('/articles/{article:id}/edit', [ArticlesController::class, 'edit'])->middleware('auth');
+Route::name('my_notifs')->get('/my-notifs', [NotifController::class, 'show'])->middleware('auth');
 
 Auth::routes();
 
