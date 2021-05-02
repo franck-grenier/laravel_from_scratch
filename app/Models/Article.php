@@ -15,10 +15,11 @@ class Article extends Model
         'slug' => 'required|unique:articles,slug|max:255',
         'excerpt' => 'required',
         'body' => 'required',
-        'tags' => 'exists:tags,id'
+        'tags' => 'exists:tags,id',
+        'user_id' => 'exists:users,id'
     ];
 
-    protected $fillable = ['title', 'excerpt', 'body', 'slug'];
+    protected $fillable = ['title', 'excerpt', 'body', 'slug', 'user_id'];
 
     public function author()
     {
@@ -32,17 +33,6 @@ class Article extends Model
     public function tags()
     {
         return $this->belongsToMany(Tag::class)->withTimestamps();
-    }
-
-
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::creating(function ($article) {
-            // Temporary hack
-            $article->user_id = $article->user_id ?? 1;
-        });
     }
 
     /**

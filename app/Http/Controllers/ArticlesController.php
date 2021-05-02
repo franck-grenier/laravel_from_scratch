@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreArticleRequest;
 use App\Models\Tag;
+use App\Notifications\ArticleCreated;
 use App\Services\TagService;
 use Illuminate\Http\Request;
 use App\Models\Article;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Str;
 
 /**
@@ -58,6 +60,8 @@ class ArticlesController extends Controller
         if ($request->has('tags')) {
             $article->tags()->attach($request->get('tags'));
         }
+
+        Notification::send($request->user(), new ArticleCreated($article));
 
         return redirect(route('articles_index'));
     }

@@ -43,7 +43,8 @@ class StoreArticleRequest extends FormRequest
     protected function prepareForValidation()
     {
         $this->merge([
-            'slug' => Str::slug($this->slug ?? $this->title)
+            'slug' => Str::slug($this->slug ?? $this->title),
+            'user_id' => $this->user()->id
         ]);
     }
 }
