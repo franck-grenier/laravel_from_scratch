@@ -33,4 +33,8 @@ return [
     'tags' => [
         'key' => 'my-api-key-not-so-secret'
     ],
+
+    'nexmo' => [
+        'sms_from' => '0033673599478',
+    ],
 ];

@@ -6,6 +6,7 @@ use App\Models\Article;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Messages\NexmoMessage;
 use Illuminate\Notifications\Notification;
 
 class ArticleCreated extends Notification implements ShouldQueue
@@ -34,7 +35,8 @@ class ArticleCreated extends Notification implements ShouldQueue
     {
         return [
             'mail',
-            'database'
+            'database',
+            'nexmo'
         ];
     }
 
@@ -47,7 +49,8 @@ class ArticleCreated extends Notification implements ShouldQueue
     {
         return [
             'mail' => 'sendEmails',
-            'database' => 'sendEmails'
+            'database' => 'sendEmails',
+            'nexmo' => 'sendEmails'
         ];
     }
 
@@ -76,5 +79,15 @@ class ArticleCreated extends Notification implements ShouldQueue
         return $this->article->toArray();
     }
 
-
+    /**
+     * Get the Vonage / SMS representation of the notification.
+     *
+     * @param  mixed  $notifiable
+     * @return \Illuminate\Notifications\Messages\NexmoMessage
+     */
+    public function toNexmo($notifiable)
+    {
+        return (new NexmoMessage)
+            ->content(sprintf('New article published : %s', $this->article->title));
+    }
 }
