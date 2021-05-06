@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Mail;
+use Nexmo\Laravel\Facade\Nexmo;
 
 class sendEmails implements ShouldQueue
 {
@@ -24,15 +25,5 @@ class sendEmails implements ShouldQueue
     public function __construct(Notification $notif)
     {
         $this->notif = $notif;
-    }
-
-    /**
-     * Send the email
-     *
-     * @return void
-     */
-    public function handle()
-    {
-        Mail::send($this->notif);
     }
 }
