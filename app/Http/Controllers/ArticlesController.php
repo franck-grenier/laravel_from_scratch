@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\ArticleCreated as ArticleCreatedEvent;
 use App\Http\Requests\StoreArticleRequest;
 use App\Models\Tag;
 use App\Notifications\ArticleCreated;
@@ -62,6 +63,7 @@ class ArticlesController extends Controller
         }
 
         Notification::send($request->user(), new ArticleCreated($article));
+        ArticleCreatedEvent::dispatch($article);
 
         return redirect(route('articles_index'));
     }
