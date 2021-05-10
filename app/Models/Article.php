@@ -26,13 +26,17 @@ class Article extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function tags()
     {
         return $this->belongsToMany(Tag::class)->withTimestamps();
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 
     /**
