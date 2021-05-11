@@ -9,11 +9,19 @@ class Comment extends Model
 {
     use HasFactory;
 
-    public function article () {
+    const VALIDATION = [
+        'body' => 'required|max:170',
+        'article_id' => 'exists:articles,id',
+        'user_id' => 'exists:users,id'
+    ];
+
+    protected $fillable = ['body', 'article_id', 'user_id'];
+
+    public function article() {
         return $this->belongsTo(Article::class);
     }
 
-    public function author () {
+    public function author() {
         return $this->belongsTo(User::class);
     }
 }
