@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder
             );
 
             // Add comments on articles
-            $article->comments()->saveMany(Comment::factory(rand(1, 5))->create([
+            $article->comments()->saveMany(Comment::factory(rand(2,5))->make([
                 'user_id' => $users->random(1)->pluck('id')[0],
                 'article_id' => $article->id
             ]));
