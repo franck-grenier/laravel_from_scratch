@@ -39,6 +39,11 @@ class Article extends Model
         return $this->hasMany(Comment::class);
     }
 
+    public function hasBestComment(): bool
+    {
+        return boolval($this->comments()->pluck('best_comment')->max());
+    }
+
     /**
      * Make sure "slug" is slugified
      *

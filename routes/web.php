@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\ContactController;
@@ -51,6 +52,8 @@ Route::name('articles_create')->get('/articles/create', [ArticlesController::cla
 Route::name('articles_show')->get('/articles/{article:slug}', [ArticlesController::class, 'show']);
 Route::name('articles_edit')->get('/articles/{article:id}/edit', [ArticlesController::class, 'edit'])->middleware('auth');
 Route::name('my_notifs')->get('/my-notifs', [NotifController::class, 'show'])->middleware('auth');
+
+Route::name('comment_best')->patch('/comments/{comment:id}/best', [CommentController::class, 'update'])->middleware('auth');
 
 Auth::routes();
 

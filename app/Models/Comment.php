@@ -22,6 +22,11 @@ class Comment extends Model
     }
 
     public function author() {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function setBest() {
+        $this->best_comment = 1;
+        return $this->save();
     }
 }
